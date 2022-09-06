@@ -1,26 +1,27 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+// react で typescript で component なしで書く場合、props 用の型を作ると見通しがよくなる
+// ディメリットとして面倒というのがある。
+// 今の考え、元のプログラムがあるのなら、props を使う。なければ普通の関数を使う
+import React from "react";
+import "./App.css";
 
-function App() {
+type WelcomeProps = {
+  name: string;
+};
+const Welcome = (props: WelcomeProps) => {
+  return <h1>Hello, {props.name}</h1>;
+};
+
+const welcome = (name: string) => {
+  return <h1>Hello, {name}</h1>;
+};
+
+const App = () => {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <Welcome name="Bob" />
+      {welcome("Tarzan")}
     </div>
   );
-}
+};
 
 export default App;
